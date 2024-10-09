@@ -18,6 +18,11 @@ Route::delete('customers/{customer}/forceDestroy', [CustomerController::class, '
 
 Route::resource('employees', EmployeeController::class);
 
+
+
+
+
+
 // Route::get('/', function () {
 //     $query1 = DB::table('sales')
 //         ->selectRaw('SUM(total) as total_sales')

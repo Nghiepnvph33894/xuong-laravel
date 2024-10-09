@@ -12,6 +12,7 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
-        //
+        'api/*', // Bỏ qua tất cả các route dưới namespace API
+        'transaction/*', // Bỏ qua các route liên quan đến giao dịch
     ];
 }
