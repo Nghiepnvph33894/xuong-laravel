@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -9,17 +11,45 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'admin'], function () {
+    
+    Route::get('/', function () {
+        return redirect()->route('customers.index');
+    });
 
-Route::resource('customers', CustomerController::class);
-Route::delete('customers/{customer}/forceDestroy', [CustomerController::class, 'forceDestroy'])
-    ->name('customers.forceDestroy');
+    Route::resource('customers', CustomerController::class);
+    Route::delete('customers/{customer}/forceDestroy', [CustomerController::class, 'forceDestroy'])
+        ->name('customers.forceDestroy');
 
-Route::resource('employees', EmployeeController::class);
+    Route::resource('employees', EmployeeController::class);
+
+    Route::resource('students', StudentController::class);
+});
 
 
 
+
+Route::prefix('/auth')->group(function () {
+
+    Route::get('/verify/{email}', [AuthController::class, 'verify'])->name('verify');
+
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
+
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])
+        ->name('forgot-password');
+    Route::post('/forgot-password', [AuthController::class, 'sendResetLink']);
+
+    Route::get('/reset-password/{token}', [AuthController::class, 'showResetForm'])
+        ->name('reset-password');
+    Route::post('/reset-password', [AuthController::class, 'resetPassword'])
+        ->name('reset-password.post');
+});
 
 
 

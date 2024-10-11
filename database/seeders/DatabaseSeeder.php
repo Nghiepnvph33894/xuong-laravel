@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Classroom;
 use App\Models\Expense;
 use App\Models\FinancialReport;
 use App\Models\Product;
 use App\Models\Sale;
+use App\Models\Subject;
 use App\Models\Taxe;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
@@ -20,7 +22,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(100)->create();
+        for ($i = 0; $i < 10; $i++) {
+            Classroom::create([
+                'name'        => 'phòng '.$i,
+                'teacher_name'=> fake()->name,
+            ]);
+
+            Subject::create([
+                'name'    =>fake()->name,
+                'credits' =>rand(0,9),
+            ]);
+        }
+
+
+        // \App\Models\User::factory(100)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

@@ -14,13 +14,22 @@
 
 <body>
     <header>
-        <nav class="nav justify-content-center  ">
-            <a class="nav-link active" href="#" aria-current="page">Welcome</a>
-            <a class="nav-link" href="{{ route('customers.index') }}">Quản lý khách hàng</a>
-            <a class="nav-link" href="{{ route('employees.index') }}">Quản lý nhân viên</a>
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">Welcome</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarID"
+                    aria-controls="navbarID" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarID">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="{{ route('customers.index') }}">Khách hàng</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('employees.index') }}">Nhân viên</a>
+                        <a class="nav-link active" aria-current="page" href="{{ route('students.index') }}">Học sinh</a>
+                    </div>
+                </div>
+            </div>
         </nav>
-
-
         <!-- place navbar here -->
     </header>
     <main class="container">
