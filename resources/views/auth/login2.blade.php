@@ -8,17 +8,33 @@
         <div class="text-center">
             <h1 class="h4 text-gray-900 mb-4">Welcome Easy Shop!</h1>
         </div>
-        <form class="user" action="{{ route('login') }}" method="POST" >
-            @csrf 
+
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+        <form class="user" action="{{ route('login') }}" method="POST">
+            @csrf
 
             <div class="form-group">
                 <input type="email" name="email" class="form-control form-control-user" id="email"
-                    aria-describedby="emailHelp" placeholder="Enter Email Address..." required value="{{ old('email')}}">
+                    aria-describedby="emailHelp" placeholder="Enter Email Address..." required value="{{ old('email') }}">
             </div>
 
             <div class="form-group">
                 <input type="password" name="password" class="form-control form-control-user" id="password"
-                    placeholder="Password" required >
+                    placeholder="Password" required>
             </div>
 
             <div class="form-group">
@@ -31,7 +47,7 @@
             <button type="submit" class="btn btn-primary btn-user btn-block">
                 Login
             </button>
-           
+
             <hr>
             <a href="index.html" class="btn btn-google btn-user btn-block">
                 <i class="fab fa-google fa-fw"></i> Login with Google

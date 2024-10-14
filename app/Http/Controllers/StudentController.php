@@ -15,7 +15,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $data = Student::with(['passport', 'classroom', 'subjects'])->latest('id')->paginate(1);
+        $data = Student::with(['passport', 'classroom', 'subjects'])
+        ->latest('id')->paginate(1);
 
         // dd($data->toArray());
 

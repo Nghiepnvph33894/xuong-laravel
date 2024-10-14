@@ -17,8 +17,8 @@
             </h5>
         </div>
     @endif
-
-    <div class="table-responsive">
+    
+    <div class="table-responsive mt-3">
         <table class="table table-info">
             <thead>
                 <tr>

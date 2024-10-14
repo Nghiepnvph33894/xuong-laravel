@@ -9,10 +9,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
 Route::group(['prefix' => 'admin'], function () {
-    
+
     Route::get('/', function () {
         return redirect()->route('customers.index');
     });

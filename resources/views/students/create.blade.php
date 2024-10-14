@@ -28,7 +28,7 @@
                         <label for="classroom_id">Classroom:</label>
                         <select name="classroom_id" class="form-control">
                             @foreach ($classroom as $id => $name)
-                                <option value="{{ $id }}" {{ old('classroom_id') == $id ? 'selected' : '' }}>
+                                <option value="{{ $id }}">
                                     {{ $name }}
                                 </option>
                             @endforeach
@@ -78,7 +78,7 @@
                 <label for="subjects">Subject:</label>
                 <select name="subjects[]" class="form-control" multiple>
                     @foreach ($subject as $id => $name)
-                        <option value="{{ $id }}" {{ in_array($id, old('subjects', [])) ? 'selected' : '' }}>
+                        <option value="{{ $id }}">
                             {{ $name }}
                         </option>
                     @endforeach

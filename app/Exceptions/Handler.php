@@ -29,9 +29,14 @@ class Handler extends ExceptionHandler
     }
     protected function shouldReturnJson($request, Throwable $e)
     {
-        return $request->is('api/*')
+        if (
+            $request->is('api/*')
             || $request->wantsJson()
             || $request->ajax()
-            || $request->isJson();
+            || $request->isJson()
+        ) {
+            return true;
+        }
+        return false;
     }
 }
